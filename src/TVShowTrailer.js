@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {apiKey} from './config';
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
-import YouTube from 'react-youtube';
 
 function TVShowTrailers() {
   const {id} = useParams();
