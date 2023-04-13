@@ -6,6 +6,7 @@ import './styles/Navbar.css';
 const Navbar = ({loggedIn, handleLogout, userId}) => {
   const navi = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
+  const username = sessionStorage.getItem('username');
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -16,9 +17,10 @@ const Navbar = ({loggedIn, handleLogout, userId}) => {
     try {
       await axios.delete(`http://localhost:6227/users/${userId}`);
       handleLogout();
+      navi('/');
     } catch (err) {
       console.error(err);
-      alert('Error deleting account');
+      alert('Error Deleting Account');
     }
   };
   const logoutOnly = () => {
@@ -36,11 +38,13 @@ const Navbar = ({loggedIn, handleLogout, userId}) => {
     <nav className='navbar'>
       {loggedIn ? (
         <div className="dropdown" onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
-          <button className="dropbtn">Account</button>
+          <button className="dropbtn">
+            Welcome, <span> {username}</span>
+          </button>
           {showDropdown && (
             <div className="dropdown-content">
+              <button onClick={logoutOnly} style={{color: 'crimson'}}>Logout</button> <br/>
               <button onClick={() => deleteAccount(userId)} style={{color: 'crimson'}}>Delete Account</button>
-              <button onClick={logoutOnly} style={{color: 'crimson'}}>Logout</button>
             </div>
           )}
         </div>
@@ -48,7 +52,8 @@ const Navbar = ({loggedIn, handleLogout, userId}) => {
         <button onClick={navToLogin} style={{color: 'dodgerblue'}}>Login</button>
         )}
       {loggedIn && <NavLink to={'/watchlist'}>Watchlist</NavLink>}
-      {loggedIn && <NavLink to={'/top-media'}>Top Rated Media</NavLink>}
+      {loggedIn && <NavLink to={'/top-rated-media'}>Top Rated Media</NavLink>}
+      {loggedIn && <NavLink to={'/popular-media'}>Popular Media</NavLink>}
       {loggedIn && <NavLink to={'/movie-search'}>Search Movie</NavLink>}
       {loggedIn && <NavLink to={'/tv-show-search'}>Search TV Show</NavLink>}
       {!loggedIn && (

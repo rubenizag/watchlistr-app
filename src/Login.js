@@ -20,7 +20,8 @@ const Login = ({onLogin}) => {
       const res = await axios.post('http://localhost:6227/login', {username, password});
       onLogin(res.data.userId);
       sessionStorage.setItem('userId', res.data.userId);
-      navi('/top-media')
+      sessionStorage.setItem('username', res.data.username);
+      navi('/popular-media')
     } catch (error) {
       console.error(error);
       alert('Invalid Username/Password');

@@ -33,16 +33,18 @@ function TVShowTrailers() {
     const startIndex = (currentPage - 1) * 10;
     const endIndex = startIndex + 10;
 
-    return trailers
-      .slice(startIndex, endIndex)
-      .map((trailer) =>
-        trailer.key ? (
-          <div key={trailer.id}>
-            <h3>{trailer.name}</h3>
-            <YouTube videoId={trailer.key}/>
-          </div>
-        ) : null
-      );
+    return trailers.slice(startIndex, endIndex).map((trailer) => trailer.key && (
+      <div key={trailer.id}>
+        <h3>{trailer.name}</h3>
+        <iframe
+          width="560"
+          height="315"
+          src={`https://www.youtube.com/embed/${trailer.key}`}
+          title={trailer.name}
+          allowFullScreen
+        ></iframe>
+      </div>
+    ));
   };
 
   return (

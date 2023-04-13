@@ -9,6 +9,7 @@ import MovieTrailers from './MovieTrailer';
 import TVShowSearch from './TVShowSearch';
 import TVShowTrailers from './TVShowTrailer';
 import TopRatedMedia from './TopRatedMedia';
+import PopularMedia from './PopularMedia';
 import './styles/App.css'
 
 function App() {
@@ -41,7 +42,6 @@ function App() {
     localStorage.clear();
     setLoggedIn(false);
     setUserId(null);
-    // window.location.reload();
   };
 
   console.log('userId:', userId);
@@ -57,7 +57,8 @@ function App() {
           <Route path="/movies/:id" element={<MovieTrailers/>}/>
           <Route path="/tv-show-search" element={<TVShowSearch/>}/>
           <Route path="/tv-shows/:id" element={<TVShowTrailers/>}/>
-          <Route path="/top-media" element={<TopRatedMedia/>}/>
+          <Route path="/top-rated-media" element={<TopRatedMedia/>}/>
+          <Route path="/popular-media" element={<PopularMedia/>}/>
           <Route path="/watchlist" element={<Watchlist userId={userId} onLogin={handleLogin}/>}/>
         </Routes>
       </Router>

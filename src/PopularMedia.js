@@ -4,9 +4,9 @@ import {apiKey} from './config';
 import axios from 'axios';
 import './styles/LoadingIndicator.css';
 
-const TopRatedMedia = () => {
-  const [topMovies, setTopMovies] = useState([]);
-  const [topTvShows, setTopTvShows] = useState([]);
+const PopularMedia = () => {
+  const [popMovies, setPopMovies] = useState([]);
+  const [popTvShows, setPopTvShows] = useState([]);
   const [showMedia, setShowMedia] = useState(true);
   const [loading, setLoading] = useState(false);
 
@@ -14,17 +14,17 @@ const TopRatedMedia = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const [topMoviesRes, topTvShowsRes] = await Promise.all([
-          axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&region=US`),
-          axios.get(`https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}&language=en-US`),
+        const [popMoviesRes, popTvShowsRes] = await Promise.all([
+          axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&region=US`),
+          axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US`),
         ]);
-        const topMovies = topMoviesRes.data.results;
-        const topTvShows = topTvShowsRes.data.results;
-        const movieDetailsPromises = topMovies.map((movie) => {
+        const popMovies = popMoviesRes.data.results;
+        const popTvShows = popTvShowsRes.data.results;
+        const movieDetailsPromises = popMovies.map((movie) => {
           const movieUrl = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${apiKey}`;
           return axios.get(movieUrl);
         });
-        const tvShowDetailsPromises = topTvShows.map((tvShow) => {
+        const tvShowDetailsPromises = popTvShows.map((tvShow) => {
           const tvShowUrl = `https://api.themoviedb.org/3/tv/${tvShow.id}?api_key=${apiKey}`;
           return axios.get(tvShowUrl);
         });
@@ -32,12 +32,12 @@ const TopRatedMedia = () => {
         const tvShowDetailsResponses = await Promise.all(tvShowDetailsPromises);
         const movieDetails = movieDetailsResponses.map((res) => res.data);
         const tvShowDetails = tvShowDetailsResponses.map((res) => res.data);
-        setTopMovies(movieDetails);
-        setTopTvShows(tvShowDetails);
+        setPopMovies(movieDetails);
+        setPopTvShows(tvShowDetails);
         setLoading(false);
       } catch (err) {
         console.error(err);
-        alert('An Error Occurred While Fetching Top Rated Movies and TV Shows. Please Try Again Later.');
+        alert('An Error Occurred While Fetching Popular Movies and TV Shows. Please Try Again Later.');
       }
     };
     fetchData();
@@ -101,16 +101,16 @@ const TopRatedMedia = () => {
   return (
     <div>
       <button onClick={toggleMedia}>
-        {showMedia ? 'Top Rated TV Shows' : 'Top Rated Movies'}
+        {showMedia ? 'Popular TV Shows' : 'Popular Movies'}
       </button>
       {showMedia && (
           <div>
         {loading ? (
           <div className="lds-ripple"><div></div><div></div></div>
         ) : (
-          <section className='top-movies'>
-            <h2>Top Rated Movies</h2>
-            {topMovies.map((movie, index) => (
+          <section className='pop-movies'>
+            <h2>Popular Movies</h2>
+            {popMovies.map((movie, index) => (
               <div className='poster' key={index}>
                 <span>
                   <h3>{movie.title}</h3>&nbsp;&nbsp;
@@ -135,9 +135,9 @@ const TopRatedMedia = () => {
           {loading ? (
             <div className="lds-ripple"><div></div><div></div></div>
           ) : (
-            <section className='top-tvshows'>
-              <h2>Top Rated TV Shows</h2>
-              {topTvShows.map((tvShow, index) => (
+            <section className='pop-tvshows'>
+              <h2>Popular TV Shows</h2>
+              {popTvShows.map((tvShow, index) => (
                 <div className='poster' key={index}>
                   <span>
                     <h3>{tvShow.name}</h3>&nbsp;&nbsp;
@@ -161,4 +161,4 @@ const TopRatedMedia = () => {
   );
 }
 
-export default TopRatedMedia;
+export default PopularMedia;

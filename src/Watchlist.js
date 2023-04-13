@@ -30,39 +30,37 @@ function Watchlist() {
     setTVShows(tvShows.filter(tvShow => tvShow.tv_show_id !== tvShowId));
   };
 
-  const removeMovieFromWatchlist = async (movieId) => {
+  const removeMovieFromWatchlist = async (movie) => {
     const userId = sessionStorage.getItem('userId');
-    console.log('Removing media', movieId, 'for user', userId);
-    await deleteMovieFromWatchlist(userId, movieId);
+    console.log('Removing media', movie.movie_id, 'for user', userId);
+    await deleteMovieFromWatchlist(userId, movie.id);
     if (showMovies) {
-      removeFromMovies(movieId);
+      removeFromMovies(movie.movie_id);
     }
   };
-  const removeTVShowFromWatchlist = async (tvShowId) => {
+  const removeTVShowFromWatchlist = async (tvShow) => {
     const userId = sessionStorage.getItem('userId');
-    console.log('Removing media', tvShowId, 'for user', userId);
-    await deleteTVShowFromWatchlist(userId, tvShowId);
+    console.log('Removing media', tvShow.tv_show_id, 'for user', userId);
+    await deleteTVShowFromWatchlist(userId, tvShow.id);
     if (!showMovies) {
-      removeFromTVShows(tvShowId);
+      removeFromTVShows(tvShow.tv_show_id);
     }
   };
 
-  const deleteMovieFromWatchlist = async (movieId) => {
-  const userId = sessionStorage.getItem('userId');
+  const deleteMovieFromWatchlist = async (userId, movieInternalId) => {
     try {
-      await axios.delete(`http://localhost:6227/watchlist/movies/${userId}/${movieId}`);
-      console.log('Media Removed From Watchlist', movieId);
+      await axios.delete(`http://localhost:6227/watchlist/movie/${userId}/${movieInternalId}`);
+      console.log('Media Removed From Watchlist', movieInternalId);
     } catch (err) {
       console.error(err);
       console.log('Error Removing Media From Watchlist');
     }
   };
-  const deleteTVShowFromWatchlist = async (tvShowId) => {
-  const userId = sessionStorage.getItem('userId');
-  console.log(tvShowId)
+
+  const deleteTVShowFromWatchlist = async (userId, tvShowInternalId) => {
     try {
-      await axios.delete(`http://localhost:6227/watchlist/tvshows/${userId}/${tvShowId}`);
-      console.log('Media Removed From Watchlist', tvShowId);
+      await axios.delete(`http://localhost:6227/watchlist/tvshow/${userId}/${tvShowInternalId}`);
+      console.log('Media Removed From Watchlist', tvShowInternalId);
     } catch (err) {
       console.error(err);
       console.log('Error Removing Media From Watchlist');
@@ -89,7 +87,7 @@ function Watchlist() {
                 <p>{console.log(movie)}</p>
                 <span>
                   <h2>{movie.title}</h2>
-                  <button onClick={() => removeMovieFromWatchlist(movie.movie_id)}>Remove</button>
+                  <button onClick={() => removeMovieFromWatchlist(movie)}>Remove</button>
                   {movie.poster_path ? (
                     <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} width='300px' key={movie.title} alt={movie.title}/>
                   ) : (
@@ -114,7 +112,7 @@ function Watchlist() {
                 <p>{console.log(tvShow)}</p>
                 <span>
                   <h2>{tvShow.name}</h2>
-                  <button onClick={() => removeTVShowFromWatchlist(tvShow.tv_show_id)}>Remove</button>
+                  <button onClick={() => removeTVShowFromWatchlist(tvShow)}>Remove</button>
                   {tvShow.poster_path ? (
                     <img src={`https://image.tmdb.org/t/p/original/${tvShow.poster_path}`} width='300px' key={tvShow.name} alt={tvShow.name}/>
                   ) : (

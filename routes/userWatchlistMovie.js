@@ -25,10 +25,10 @@ router.post('/user-watchlist-movie', async (req, res) => {
       movieIdFromDb = movie.id;
     }
     await pool.query('INSERT INTO user_watchlist (user_id, movie_id) VALUES ($1, $2)', [userId, movieIdFromDb]);
-    res.status(201).json({message: 'Movie added to watchlist'});
+    res.status(201).json({message: 'Movie Added To Watchlist'});
   } catch (error) {
     console.error(error);
-    res.status(500).json({message: 'Error adding movie to watchlist'});
+    res.status(500).json({message: 'Error Adding Movie To Watchlist'});
   }
 });
 
