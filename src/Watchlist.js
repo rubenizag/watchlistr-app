@@ -50,7 +50,7 @@ function Watchlist() {
   const deleteMovieFromWatchlist = async (movieId) => {
   const userId = sessionStorage.getItem('userId');
     try {
-      await axios.delete(`http://localhost:6227/watchlist/${userId}/${movieId}`);
+      await axios.delete(`http://localhost:6227/watchlist/movies/${userId}/${movieId}`);
       console.log('Media Removed From Watchlist', movieId);
     } catch (err) {
       console.error(err);
@@ -61,7 +61,7 @@ function Watchlist() {
   const userId = sessionStorage.getItem('userId');
   console.log(tvShowId)
     try {
-      await axios.delete(`http://localhost:6227/watchlist/${userId}/${tvShowId}`);
+      await axios.delete(`http://localhost:6227/watchlist/tvshows/${userId}/${tvShowId}`);
       console.log('Media Removed From Watchlist', tvShowId);
     } catch (err) {
       console.error(err);
@@ -89,7 +89,7 @@ function Watchlist() {
                 <p>{console.log(movie)}</p>
                 <span>
                   <h2>{movie.title}</h2>
-                  <button onClick={() => removeMovieFromWatchlist(movie.media_id)}>Remove</button>
+                  <button onClick={() => removeMovieFromWatchlist(movie.movie_id)}>Remove</button>
                   {movie.poster_path ? (
                     <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} width='300px' key={movie.title} alt={movie.title}/>
                   ) : (
@@ -114,7 +114,7 @@ function Watchlist() {
                 <p>{console.log(tvShow)}</p>
                 <span>
                   <h2>{tvShow.name}</h2>
-                  <button onClick={() => removeTVShowFromWatchlist(tvShow.media_id)}>Remove</button>
+                  <button onClick={() => removeTVShowFromWatchlist(tvShow.tv_show_id)}>Remove</button>
                   {tvShow.poster_path ? (
                     <img src={`https://image.tmdb.org/t/p/original/${tvShow.poster_path}`} width='300px' key={tvShow.name} alt={tvShow.name}/>
                   ) : (

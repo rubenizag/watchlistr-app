@@ -9,7 +9,7 @@ const pool = new Pool({
 
 router.use(middlewareRouter);
 
-router.delete('/watchlist/:userId/:movieId', async (req, res) => {
+router.delete('/watchlist/movies/:userId/:movieId', async (req, res) => {
   const userId = req.params.userId;
   const movieId = req.params.movieId;
   const id = req.params.id;
@@ -37,7 +37,7 @@ router.delete('/watchlist/:userId/:movieId', async (req, res) => {
   }
 });
 
-router.delete('/watchlist/:userId/:tvShowId', async (req, res) => {
+router.delete('/watchlist/tvshows/:userId/:tvShowId', async (req, res) => {
   const userId = req.params.userId;
   const tvShowId = req.params.tvShowId;
   const id = req.params.id;
