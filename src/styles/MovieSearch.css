@@ -1,0 +1,18 @@
+/* .movie-search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+} */
+
+.movie-results-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie-result {
+  margin: 10px;
+  text-align: center;
+  max-width: 300px;
+}

@@ -1,0 +1,10 @@
+.poster {
+  display: inline-flex;
+  box-shadow: 0 0 3px 2px #cec7c759;
+  align-items: center;
+  text-align: center;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 20px;
+  width: 300px;
+}
