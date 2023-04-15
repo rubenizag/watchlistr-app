@@ -1,0 +1,12 @@
+label {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#query {
+  font-size: 15px;
+}
+
+form {
+  background-color: transparent;
+}

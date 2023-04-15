@@ -1,19 +1,82 @@
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .navbar a {
-  margin: 5px;
+  margin: 25px;
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: goldenrod;
+}
+
+.navbar a.active {
+  color: tomato;
 }
 
 button {
-  background-color: black;
+  background-color: slategray;
   border-radius: 8px;
   margin: 5px;
+  font-family: 'Nova Flat';
+  font-size: 25px;
+  cursor: pointer;
+  color: whitesmoke;
 }
 
 .dropdown {
-  position: absolute;
+  position: relative;
   top: 0;
   right: 0;
 }
 
+.dropbtn {
+  background-color: transparent;
+  border: none;
+  color: whitesmoke;
+  font-size: 2em;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.dropbtn:hover {
+  color: silver;
+}
+
 .dropbtn span {
-  color: slateblue;
+  color: limegreen;
+  margin-right: 5px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 1;
+  background-color: slategray;
+  min-width: 120px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content button {
+  background-color: transparent;
+  border: none;
+  display: block;
+  margin: 0.3rem 0;
+  font-size: 1.1em;
+  cursor: pointer;
 }

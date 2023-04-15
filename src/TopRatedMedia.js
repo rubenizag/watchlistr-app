@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {apiKey} from './config';
 import axios from 'axios';
 import './styles/LoadingIndicator.css';
+import './styles/Titles.css'
 
 const TopRatedMedia = () => {
   const [topMovies, setTopMovies] = useState([]);
@@ -15,11 +16,20 @@ const TopRatedMedia = () => {
       try {
         setLoading(true);
         const [topMoviesRes, topTvShowsRes] = await Promise.all([
-          axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&region=US`),
+          axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US`),
           axios.get(`https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}&language=en-US`),
         ]);
         const topMovies = topMoviesRes.data.results;
         const topTvShows = topTvShowsRes.data.results;
+        for (let i = 2; i <= 10; i++) {
+          const [moviesRes, tvShowsRes] = await Promise.all([
+            axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&region=US&page=${i}`),
+            axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=${i}`),
+          ]);
+
+          topMovies.push(...moviesRes.data.results);
+          topTvShows.push(...tvShowsRes.data.results);
+        }
         const movieDetailsPromises = topMovies.map((movie) => {
           const movieUrl = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${apiKey}`;
           return axios.get(movieUrl);

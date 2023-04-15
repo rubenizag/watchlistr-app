@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import './styles/Login.css'
 
 const Login = ({onLogin}) => {
   const [username, setUsername] = useState('');
@@ -29,13 +30,15 @@ const Login = ({onLogin}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Welcome to the Watchlistr App</h1>
-      <h3>Please Login</h3>
-      <label>Username:<input type="text" value={username} onChange={usernameChange}/></label> <br/>
-      <label>Password:<input type="password" value={password} onChange={passwordChange}/></label> <br/>
-      <button type="submit" style={{color: 'dodgerblue'}}>Login</button>
-    </form>
+    <div className="login">
+      <form onSubmit={handleSubmit}>
+        <h1>Welcome to the Watchlistr App</h1>
+        <h3>Please, Login Below</h3>
+        <label>Username:<input type="text" value={username} onChange={usernameChange}/></label> <br/>
+        <label>Password:<input type="password" value={password} onChange={passwordChange}/></label> <br/>
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 };
 

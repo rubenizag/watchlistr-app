@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './styles/Poster.css';
+import './styles/Titles.css'
 
 function Watchlist() {
   const [movies, setMovies] = useState([]);
@@ -72,21 +73,21 @@ function Watchlist() {
   };
 
   return (
-    <div>
-      <h1>My Watchlist</h1>
+    <div className="watchlist">
+      <h2>My Watchlist</h2>
       <button onClick={toggleShowMovies}>
         {showMovies ? 'Show TV Shows' : 'Show Movies'}
       </button>
       {showMovies ? (
         <div>
           {movies.length === 0 ? (
-            <p>No movies in your watchlist yet!</p>
+            <p>No movies in watchlist yet!</p>
           ) : (
             movies.map((movie, index) => (
               <div key={`movie-${index}`} className="poster">
                 <p>{console.log(movie)}</p>
                 <span>
-                  <h2>{movie.title}</h2>
+                  <h3>{movie.title}</h3>
                   <button onClick={() => removeMovieFromWatchlist(movie)}>Remove</button>
                   {movie.poster_path ? (
                     <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} width='300px' key={movie.title} alt={movie.title}/>
@@ -105,7 +106,7 @@ function Watchlist() {
       ) : (
         <div>
           {tvShows.length === 0 ? (
-            <p>No TV shows in your watchlist yet!</p>
+            <p>No tv shows in your watchlist yet!</p>
           ) : (
             tvShows.map((tvShow, index) => (
               <div key={`tv-show-${index}`} className="poster">

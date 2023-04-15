@@ -1,5 +1,7 @@
-body {
-  background-color: black;
+.App {
+  background-color: #566573;
   text-align: center;
   color: whitesmoke;
+  font-family: 'Nova Flat', sans-serif;
+  min-height: 100vh;
 }

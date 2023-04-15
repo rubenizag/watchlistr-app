@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {apiKey} from './config';
 import axios from 'axios';
 import './styles/LoadingIndicator.css';
+import './styles/Titles.css'
 
 const PopularMedia = () => {
   const [popMovies, setPopMovies] = useState([]);
@@ -14,32 +15,51 @@ const PopularMedia = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
+
         const [popMoviesRes, popTvShowsRes] = await Promise.all([
-          axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&region=US`),
-          axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US`),
+          axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&region=US&page=1`),
+          axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=1`),
         ]);
+
         const popMovies = popMoviesRes.data.results;
         const popTvShows = popTvShowsRes.data.results;
+
+        for (let i = 2; i <= 10; i++) {
+          const [moviesRes, tvShowsRes] = await Promise.all([
+            axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&region=US&page=${i}`),
+            axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=${i}`),
+          ]);
+
+          popMovies.push(...moviesRes.data.results);
+          popTvShows.push(...tvShowsRes.data.results);
+        }
+
         const movieDetailsPromises = popMovies.map((movie) => {
           const movieUrl = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${apiKey}`;
           return axios.get(movieUrl);
         });
+
         const tvShowDetailsPromises = popTvShows.map((tvShow) => {
           const tvShowUrl = `https://api.themoviedb.org/3/tv/${tvShow.id}?api_key=${apiKey}`;
           return axios.get(tvShowUrl);
         });
+
         const movieDetailsResponses = await Promise.all(movieDetailsPromises);
         const tvShowDetailsResponses = await Promise.all(tvShowDetailsPromises);
+
         const movieDetails = movieDetailsResponses.map((res) => res.data);
         const tvShowDetails = tvShowDetailsResponses.map((res) => res.data);
+
         setPopMovies(movieDetails);
         setPopTvShows(tvShowDetails);
+
         setLoading(false);
       } catch (err) {
         console.error(err);
         alert('An Error Occurred While Fetching Popular Movies and TV Shows. Please Try Again Later.');
       }
     };
+
     fetchData();
   }, []);
 

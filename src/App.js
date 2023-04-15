@@ -4,13 +4,15 @@ import Navbar from './Navbar';
 import Signup from './Signup';
 import Login from './Login';
 import Watchlist from './Watchlist'
-import MovieSearch from './MovieSearch';
-import MovieTrailers from './MovieTrailer';
-import TVShowSearch from './TVShowSearch';
-import TVShowTrailers from './TVShowTrailer';
-import TopRatedMedia from './TopRatedMedia';
+import MediaSearch from './MediaSearch';
 import PopularMedia from './PopularMedia';
+import TopRatedMedia from './TopRatedMedia';
+import MovieTrailers from './MovieTrailer';
+import TVShowTrailers from './TVShowTrailer';
+import Reviews from './Reviews';
 import './styles/App.css'
+import UpcomingMovies from './UpcomingMovies';
+import AiringToday from './AiringToday';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -47,18 +49,20 @@ function App() {
   console.log('userId:', userId);
 
   return (
-     <div className="App" style={{minHeight: '100vh', backgroundColor: '#000000'}}>
+     <div className="App">
       <Router>
         <Navbar userId={userId} loggedIn={loggedIn} onLogin={handleLogin} handleLogout={handleLogout}/>
         <Routes>
           <Route path="/" element={<Login onLogin={handleLogin}/>}/>
           <Route path="/signup" element={<Signup/>}/>
-          <Route path="/movie-search" element={<MovieSearch/>}/>
+          <Route path="/media-search" element={<MediaSearch/>}/>
           <Route path="/movies/:id" element={<MovieTrailers/>}/>
-          <Route path="/tv-show-search" element={<TVShowSearch/>}/>
           <Route path="/tv-shows/:id" element={<TVShowTrailers/>}/>
           <Route path="/top-rated-media" element={<TopRatedMedia/>}/>
           <Route path="/popular-media" element={<PopularMedia/>}/>
+          <Route path="/airing-today" element={<AiringToday/>}/>
+          <Route path="/upcoming-movies" element={<UpcomingMovies/>}/>
+          <Route path="/media-reviews" element={<Reviews/>}/>
           <Route path="/watchlist" element={<Watchlist userId={userId} onLogin={handleLogin}/>}/>
         </Routes>
       </Router>
