@@ -22,11 +22,11 @@ To get started with the app, follow these steps:
 
 ### Features
 
-* ___Popular Movies and TV Shows___ - displays a list of popular movies and TV shows, which users can click on to view more details.
-* ___Top-Rated Movies and TV Shows___ - displays a list of top-rated movies and TV shows, which users can click on to view more details.
-* ___TV Shows Airing Today___ - displays a list of TV shows airing today in the US, which users can click on to view more details.
-* ___Search___ - allows users to search for specific movies and TV shows by entering keywords into the search bar.
-* ___Watchlist___ - allows users to save the movie or TV show to a watchlist.
+* __Popular Movies and TV Shows__ - displays a list of popular movies and TV shows, which users can click on to view more details.
+* __Top-Rated Movies and TV Shows__ - displays a list of top-rated movies and TV shows, which users can click on to view more details.
+* __TV Shows Airing Today__ - displays a list of TV shows airing today in the US, which users can click on to view more details.
+* __Search__ - allows users to search for specific movies and TV shows by entering keywords into the search bar.
+* __Watchlist__ - allows users to save the movie or TV show to a watchlist.
 
 ### Contributions
 
