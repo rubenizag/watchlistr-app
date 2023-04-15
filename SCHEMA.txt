@@ -1,0 +1,31 @@
+users
+----
+id (int, primary key)
+username (string)
+email (string)
+password (string)
+
+movies
+------
+id (int, primary key)
+title (string)
+poster_url (string)
+runtime (int)
+release_date (date)
+overview (text)
+
+tv_shows
+--------
+id (int, primary key)
+name (string)
+poster_url (string)
+runtime (int)
+air_dates (text)
+overview (text)
+
+user_watchlist
+-----------
+id (int, primary key)
+user_id (int, foreign key references users.id)
+movie_id (int, foreign key references movies.id)
+tv_show_id (int, foreign key references tv_shows.id)
