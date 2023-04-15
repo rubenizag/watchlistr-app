@@ -34,7 +34,7 @@ Contributions to the app are welcome! If you would like to contribute, please fo
 
 ### License
 
-The app is licensed under the MIT License. See LICENSE for more information.
+The app is licensed under the MIT License.
 
 #### Credits
 
