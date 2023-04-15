@@ -3,11 +3,11 @@
 Watchlistr App is a web application that allows users to search for and discover popular and top-rated movies and TV shows, as well as TV shows airing today. Users can also search for specific movies and TV shows using the app's search functionality.
 
 ### Technologies Used
-ReactJS
-Node.js
-Express.js
-Axios
-The Movie Database (TMDb) API
+* ReactJS
+* Node.js
+* Express.js
+* Axios
+* The Movie Database (TMDb) API
 
 ### Getting Started
 
