@@ -2,8 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 const middlewareRouter = require('../middlewares/router');
-
-const apiKey = 'dcb2c2cd84f25d6719b0ec7a9c488876';
+import {apiKey} from '../src/config';
 
 router.use(middlewareRouter);
 

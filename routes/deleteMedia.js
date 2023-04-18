@@ -4,7 +4,10 @@ const middlewareRouter = require('../middlewares/router');
 
 const router = express.Router();
 const pool = new Pool({
-  connectionString: 'postgresql:///watchlistr_db',
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 router.use(middlewareRouter);
