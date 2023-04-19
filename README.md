@@ -19,7 +19,7 @@ To get started with the app, follow these steps:
 
 1. Clone the repo to your local machine using git clone https://github.com/rubenizag/watchlistr-app.git
 2. Install dependencies using ```npm install```
-3. Make sure to have PostgreSQL installed, if not you can download at https://www.postgresql.org/download/
+3. Make sure to have PostgreSQL installed, you can download at https://www.postgresql.org/download/
 4. Obtain an API key from TMDb by signing up for an account at https://www.themoviedb.org/account/signup
 5. In the ***src*** folder there is a file called ***env*** add your TMDb API key to the format: ```apiKey=your-api-key```
 6. Run the app using ```npm run dev``` to run the app, server & the database.
