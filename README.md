@@ -1,8 +1,6 @@
 <h1 align="center">Watchlistr App</h1>
 
-![Watchlistr Login Page](/src/styles/LoginPage.png)
-![Watchlistr Popular Movies](/src/styles/PopularMovies.png)
-![Watchlistr Top Rated TV Shows](/src/styles/TopRatedTVShows.png)
+![Watchlistr Login Page](/Capstone%20Project%20Apps/WatchlistrApp/watchlistr-app/src/styles/LoginPage.png)
 
 Watchlistr App is a web application that allows users to search for and discover popular and top-rated movies and TV shows, as well as TV shows airing today. Users can also search for specific movies and TV shows using the app's search functionality.
 
