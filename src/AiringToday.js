@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
-import {apiKey} from './config';
+import {apiKey} from './env';
 import './styles/LoadingIndicator.css';
 import './styles/Titles.css'
 

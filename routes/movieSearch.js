@@ -2,15 +2,15 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 const middlewareRouter = require('../middlewares/router');
-import {apiKey} from '../src/config';
+const {apiKey} = require('../src/env');
 
 router.use(middlewareRouter);
 
 router.get('/movie-search', async (req, res) => {
   try {
     const {query} = req.query;
-    const res = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`);
-    const movies = res.data.results.map(movie => ({
+    const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`);
+    const movies = response.data.results.map(movie => ({
       movieID: movie.id,
       title: movie.title,
       poster: `https://image.tmdb.org/t/p/original/${movie.poster_path}`,

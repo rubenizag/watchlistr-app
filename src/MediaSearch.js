@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import {apiKey} from './config';
+import {apiKey} from './env';
 import './styles/Poster.css';
 import './styles/LoadingIndicator.css'
 import './styles/MediaSearch.css'

@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import axios from 'axios';
-import {apiKey} from './config';
+import {apiKey} from './env';
 import './styles/Poster.css';
 import './styles/Titles.css'
 

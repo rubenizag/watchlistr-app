@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import {apiKey} from './config';
+import {apiKey} from './env';
 import axios from 'axios';
 import './styles/LoadingIndicator.css';
 import './styles/Titles.css'
