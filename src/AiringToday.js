@@ -37,25 +37,30 @@ function AiringToday() {
     fetchData();
   }, []);
 
-  const addShowToWatchlist = async (tvShow) => {
+  const addTVShowToWatchlist = async (tvShow) => {
     const userId = sessionStorage.getItem('userId');
+    const firstAirDate = tvShow.first_air_date;
+    const lastAirDate = tvShow.last_air_date;
+    const airDates = firstAirDate + '/' + lastAirDate;
     if (!userId) {
-      alert('Login to add TV shows to your watchlist');
+      alert('Login To Add TV Shows To Your Watchlist');
       return;
     }
     try {
-      await axios.post('http://localhost:6227/user-watchlist-tv', {
+      await axios.post('http://localhost:6227/user-watchlist-tv-show', {
         tvShowId: tvShow.id,
-        title: tvShow.name,
-        releaseDate: tvShow.first_air_date,
+        name: tvShow.name,
+        airDates: airDates,
+        runtime: tvShow.episode_run_time[0],
         posterPath: tvShow.poster_path,
         overview: tvShow.overview,
         userId: userId
       });
-      alert('TV show added to watchlist!');
+      console.log(tvShow)
+      alert('TV Show Added To Watchlist!');
     } catch (err) {
       console.error(err);
-      alert('An error occurred while adding the TV show to your watchlist. Please try again later.');
+      alert('An Error Occurred While Adding The Movie To Your Watchlist. Please Try Again Later.');
     }
   };
 
@@ -70,7 +75,7 @@ function AiringToday() {
             <div className="poster" key={tvShow.id}>
               <span>
                 <h3>{tvShow.name}</h3>
-                <button onClick={() => addShowToWatchlist(tvShow)}>Add to Watchlist</button>
+                <button onClick={() => addTVShowToWatchlist(tvShow)}>Add to Watchlist</button>
                 {tvShow.poster_path ? (<img src={`https://image.tmdb.org/t/p/w500${tvShow.poster_path}`} width="300px" alt={tvShow.name}/>
                 ) : (<img src="https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg" width="300px" alt={tvShow.name}/>
                 )}
