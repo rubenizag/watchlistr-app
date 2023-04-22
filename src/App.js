@@ -10,9 +10,9 @@ import TopRatedMedia from './TopRatedMedia';
 import MovieTrailers from './MovieTrailer';
 import TVShowTrailers from './TVShowTrailer';
 import Reviews from './Reviews';
-import './styles/App.css'
 import UpcomingMovies from './UpcomingMovies';
 import AiringToday from './AiringToday';
+import './styles/App.css'
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);

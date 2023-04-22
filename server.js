@@ -3,13 +3,10 @@ const routes = [
   require('./routes/signup'),
   require('./routes/login'),
   require('./routes/deleteUser'),
-  require('./routes/movieSearch'),
-  require('./routes/tvShowSearch'),
-  require('./routes/userAddedMovie'),
-  require('./routes/userAddedTVShow'),
+  require('./routes/mediaSearch'),
+  require('./routes/userAddedMedia'),
   require('./routes/userWatchlist'),
-  require('./routes/userWatchlistMovie'),
-  require('./routes/userWatchlistTVShow'),
+  require('./routes/userWatchlistMedia'),
   require('./routes/deleteMedia'),
 ];
 
