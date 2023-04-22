@@ -5,39 +5,47 @@ const jwt = require('jsonwebtoken');
 const secret = 'testing123';
 const middlewareRouter = require('../middlewares/router');
 
-const router = express.Router();
+// Create a new Pool instance to connect to the PostgreSQL database
 const pool = new Pool({
   connectionString: 'postgresql:///watchlistr_db',
 });
 
+const router = express.Router();
+// Middleware used to define global middleware functions that are applied to all routes in the router
 router.use(middlewareRouter);
 
+// Route for user login
 router.post('/login', async (req, res) => {
+  const {username, password} = req.body;
   try {
-    const {username, password} = req.body;
+    // Get the user from the database using the provided username
     const result = await pool.query(
       'SELECT id, username, password FROM users WHERE username=$1',
       [username]
     );
-    if (result.rows.length === 0) {
-      res.status(401).send({error: 'Invalid Username'});
-      return;
-    }
     const user = result.rows[0];
-    console.log(user);
+    if (!user) {
+      throw new Error('Invalid Username');
+    }
+    // Check if the provided password matches the user's hashed password
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
-      res.status(401).send({error: 'Invalid Password'});
-      return;
+      throw new Error('Invalid Password');
     }
+    // Set the user's ID in the session and create a JWT token for authentication
     req.session.userId = user.id;
-    console.log(req.session)
     const token = jwt.sign({userId: user.id}, secret);
-    res.send({message: 'Login successful', userId: user.id, username: user.username, token});
-    console.log(token);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({error: 'An Error Occurred While Logging In.'});
+    // Send the user's information and token in the response
+    res.send({
+      message: 'Login Successful',
+      userId: user.id,
+      username: user.username,
+      token,
+    });
+  } catch (err) {
+    console.error(err);
+    const errorMessage = err.message || 'An Error Occurred While Logging In.';
+    res.status(401).send({error: errorMessage});
   }
 });
 
