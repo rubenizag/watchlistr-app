@@ -23,9 +23,9 @@ const Login = ({onLogin}) => {
       sessionStorage.setItem('userId', res.data.userId);
       sessionStorage.setItem('username', res.data.username);
       navi('/popular-media')
-    } catch (error) {
-      console.error(error);
-      alert('Invalid Username/Password');
+    } catch (err) {
+      console.error(err);
+      alert(err.response.data.error);
     }
   };
 
