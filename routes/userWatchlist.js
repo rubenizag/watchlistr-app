@@ -8,7 +8,7 @@ const pool = new Pool({
   ssl: {
     rejectUnauthorized: false
   }
-});
+})
 
 const router = express.Router();
 // Middleware used to define global middleware functions that are applied to all routes in the router
