@@ -7,11 +7,8 @@ const middlewareRouter = require('../middlewares/router');
 
 // Create a new Pool instance to connect to the PostgreSQL database
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-})
+  connectionString: 'postgresql:///watchlistr_db',
+});
 
 const router = express.Router();
 // Middleware used to define global middleware functions that are applied to all routes in the router
