@@ -11,15 +11,15 @@ const routes = [
 ];
 
 const app = express();
-const port = 6227;
+const PORT = process.env.PORT || 6227;
 
 app.use(express.json());
 routes.forEach((route) => {
   app.use(route)
 });
 
-app.listen(port, () => {
-  console.log(`Server listening at ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
 
 module.exports = routes;
