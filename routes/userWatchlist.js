@@ -2,9 +2,12 @@ const express = require('express');
 const {Pool} = require('pg');
 const middlewareRouter = require('../middlewares/router');
 
-// Create a new Pool instance to connect to the PostgreSQL database
+// Creates a new database connection pool, pool will use the `DATABASE_URL` environment variable if set or the default connection string otherwise.
 const pool = new Pool({
-  connectionString: 'postgresql:///watchlistr_db',
+  connectionString: process.env.DATABASE_URL || 'postgresql:///watchlistr_db',
+  ssl: process.env.DATABASE_URL ? {
+    rejectUnauthorized: false
+  } : false
 });
 
 const router = express.Router();
