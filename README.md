@@ -11,18 +11,18 @@ Watchlistr App is a web application that allows users to search for and discover
 * Node.js
 * Express.js
 * Axios
-* The Movie Database (TMDb) API
+* The Movie Database (TMDB) API
 
 ### Getting Started
 
 To get started with the app, follow these steps:
 
-1. Clone the repo to your local machine using git clone https://github.com/rubenizag/watchlistr-app.git
+1. Clone the repo to your local machine using ```git clone https://github.com/rubenizag/watchlistr-app.git```
 2. Install dependencies using ```npm install```
 3. Make sure to have PostgreSQL installed, you can download at https://www.postgresql.org/download/
-4. Obtain an API key from TMDb by signing up for an account at https://www.themoviedb.org/account/signup
-5. In the ***src*** folder there is a file called ***env*** add your TMDb API key to the format: ```apiKey=your-api-key```
-6. To run the app, server & the database use ```npm run dev```.
+4. Obtain an API key from TMDB by signing up for an account at https://www.themoviedb.org/account/signup
+5. In the ***src*** folder there is a file called ***env*** add your TMDB API key to: ```apiKey=your-api-key```
+6. To run the app, server & the database use ```npm run dev```
 
 
 ### Features
@@ -43,5 +43,5 @@ The app is licensed under the MIT License.
 
 #### Credits
 
-* The TMDB API for providing movie and TV show data
-* create-react-app for the initial app setup
+* The TMDB API for providing movies and tv shows data.
+* Running ```create-react-app``` for the initial app setup.
